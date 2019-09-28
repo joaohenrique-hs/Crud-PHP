@@ -1,0 +1,6 @@
+{
+    "name": "joao/projetinho",
+    "require": {
+        "twig/twig": "^2.11"
+    }
+}
