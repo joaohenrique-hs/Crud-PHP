@@ -9,12 +9,12 @@ class Core
         } else {
             $controller = 'HomeController';
         }
-        if(isset($urlGet['metodo'])){
+        if (isset($urlGet['metodo'])) {
             $acao = $urlGet['metodo'];
-        }else{
+        } else {
             $acao = 'index';
         }
-        
+
         if (!class_exists($controller)) {
             $controller = 'ErroController';
         }
@@ -23,8 +23,8 @@ class Core
         } else {
             $id = null;
         }
-        
-        
+
+
         call_user_func_array(array(new $controller, $acao), array('id' => $id));
     }
 }

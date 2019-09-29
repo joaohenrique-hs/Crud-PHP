@@ -40,7 +40,7 @@ class Postagem
 
         return $resultado;
     }
-    public function insert($dadosPost)
+    public static function insert($dadosPost)
     {
         if (empty($dadosPost['titulo']) or empty($dadosPost['conteudo'])) {
             throw new Exception("Preencha os campos");
@@ -65,7 +65,7 @@ class Postagem
 
         return true;
     }
-    public function delete($idPost)
+    public static function delete($idPost)
     {
         $con = Connection::getCon();
 
@@ -81,7 +81,7 @@ class Postagem
 
         return true;
     }
-    public function update($dadosPost, $idPost)
+    public static function update($dadosPost, $idPost)
     {
         if (empty($dadosPost['titulo']) or empty($dadosPost['conteudo'])) {
             throw new Exception("Preencha os campos", $idPost);

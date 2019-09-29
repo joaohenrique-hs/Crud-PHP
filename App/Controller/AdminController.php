@@ -15,12 +15,13 @@ class AdminController
 
             $conteudo = $template->render($parametros);
             echo $conteudo;
-        } catch (Exception $e) { 
+        } catch (Exception $e) {
             $parametros['postagens'] = $objPostagens;
 
             $conteudo = $template->render($parametros);
             echo $conteudo;
-            echo '<h2>' . $e->getMessage(); '</h2>';
+            echo '<h2>' . $e->getMessage();
+            '</h2>';
         }
     }
     public function create()
@@ -65,6 +66,7 @@ class AdminController
         $loader = new \Twig\Loader\FilesystemLoader('App/View');
         $twig = new \Twig\Environment($loader);
         $template = $twig->load('update.html');
+
         $parametros = array();
         $parametros['titulo'] = $postagem->titulo;
         $parametros['conteudo'] = $postagem->conteudo;
