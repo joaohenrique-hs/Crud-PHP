@@ -2,8 +2,25 @@
 
 class Core
 {
-    public function start($urlGet)
+    public function start($URL)
     {
+        $URL[0] = ($URL[0] != '' ? $URL[0] : 'Home');
+        
+        $Controller = $URL[0] . 'Controller';
+
+        if (class_exists($Controller)) {
+            $Controller::index();
+        }
+        else{
+            ErroController::index();
+        }
+    }
+
+
+
+    /*public function start()
+    {
+        $urlGet = 0;
         if (isset($urlGet['pagina'])) {
             $controller = ucfirst($urlGet['pagina'] . 'Controller');
         } else {
@@ -27,4 +44,5 @@ class Core
 
         call_user_func_array(array(new $controller, $acao), array('id' => $id));
     }
+    */
 }
