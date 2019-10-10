@@ -5,13 +5,18 @@ class Core
     public function start($URL)
     {
         $URL[0] = ($URL[0] != '' ? $URL[0] : 'Home');
-        
+
         $Controller = $URL[0] . 'Controller';
 
         if (class_exists($Controller)) {
-            $Controller::index();
-        }
-        else{
+            $Method = 'index';
+            if (isset($URL[1]) && method_exists($Controller, $URL[1])){
+                if (method_exists($Controller, $Method)) {
+                    $Method = $URL[1];
+                }
+            }
+            $Controller::$Method();
+        } else {
             ErroController::index();
         }
     }
