@@ -24,13 +24,18 @@ class Core
 
         if (class_exists($Controller)) {
             $Method = 'index';
-            if (isset($URL[1]) && method_exists($Controller, $URL[1])) {
-                if (method_exists($Controller, $Method)) {
+            if (isset($URL[1])) {
+                if (method_exists($Controller, $URL[1])) {
                     $Method = $URL[1];
+                    if(isset($URL[2])){
+                        $params = $URL[2];
+                    }
+                }
+                else{
+                    $params = $URL[1];
                 }
             }
-            
-            $Controller::$Method();
+            $Controller::$Method($params);
         } else {
             ErroController::index();
         }

@@ -3,7 +3,7 @@
     {% for postagem in postagens %}
     <article>
         <header>
-            <h2><a href="http://localhost/Projetinho/?pagina=post&id={{postagem.id_post}}">{{postagem.titulo}}</a></h2>
+            <h2><a href="http://localhost/Projetinho/Post/{{postagem.id_post}}">{{postagem.titulo}}</a></h2>
         </header>
         <p>{{postagem.conteudo}}</p>
     </article>
