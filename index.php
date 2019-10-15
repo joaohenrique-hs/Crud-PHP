@@ -19,21 +19,9 @@ require_once 'vendor/autoload.php';
 
 $template = file_get_contents("App/Template/estrutura.html");
 
-$_REQUEST_URI = filter_input(INPUT_SERVER, 'REQUEST_URI');
-
-$INITE = strpos($_REQUEST_URI, '?');
-
-if ($INITE) {
-    $_REQUEST_URI = substr($_REQUEST_URI, 0, $INITE);
-}
-
-$_REQUEST_URI_PASTA = substr($_REQUEST_URI, 12);
-
-$URL = explode('/', $_REQUEST_URI_PASTA);
-
 ob_start();
 $core = new Core;
-$core->start($URL);
+$core->start();
 $retorno = ob_get_contents();
 ob_end_clean();
 
