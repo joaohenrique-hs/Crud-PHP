@@ -13,15 +13,15 @@ require_once 'App/Models/Comentario.php';
 
 require_once 'lib/Database/Connection.php';
 
-require_once 'vendor/autoload.php'; //Composer e dependencias
+require_once 'vendor/autoload.php';
 
-
+//-------------------------------------------------
 
 $template = file_get_contents("App/Template/estrutura.html");
 
 ob_start();
 $core = new Core;
-$core->start($_GET);
+$core->start();
 $retorno = ob_get_contents();
 ob_end_clean();
 

@@ -41,10 +41,10 @@ class AdminController
             Postagem::insert($_POST);
 
             echo '<script>alert("Publicação inserida com sucesso!")</script>';
-            echo '<script>location.href="http://localhost/Projetinho/?pagina=admin&metodo=index"</script>';
+            echo '<script>location.href="http://localhost/Projetinho/Admin"</script>';
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '")</script>';
-            echo '<script>location.href="http://localhost/Projetinho/?pagina=admin&metodo=create"</script>';
+            echo '<script>location.href="http://localhost/Projetinho/Admin/create"</script>';
         }
     }
     public function delete($params)
@@ -54,10 +54,10 @@ class AdminController
             Comentario::deleteComents($params);
 
             echo '<script>alert("Publicação deletada com sucesso!")</script>';
-            echo '<script>location.href="http://localhost/Projetinho/?pagina=admin"</script>';
+            echo '<script>location.href="http://localhost/Projetinho/Admin"</script>';
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '")</script>';
-            echo '<script>location.href="http://localhost/Projetinho/?pagina=admin"</script>';
+            echo '<script>location.href="http://localhost/Projetinho/Admin"</script>';
         }
     }
     public function alter($params)
@@ -80,11 +80,11 @@ class AdminController
         try {
             Postagem::update($_POST, $params);
             echo '<script>alert("Publicação alterada com sucesso!")</script>';
-            echo '<script>location.href="http://localhost/Projetinho/?pagina=admin"</script>';
+            echo '<script>location.href="http://localhost/Projetinho/Admin"</script>';
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '")</script>';
             $id = $e->getCode();
-            echo '<script>location.href="http://localhost/Projetinho/?pagina=admin&metodo=alter&id=' . $id . '"</script>';
+            echo '<script>location.href="http://localhost/Projetinho/Admin/alter/' . $id . '"</script>';
         }
     }
 }

@@ -1,6 +1,6 @@
 <h1>Gerenciador de conteúdo</h1>
 
-<a href="http://localhost/Projetinho/?pagina=admin&metodo=create">Criar publicação</a>
+<a href="http://localhost/Projetinho/Admin/create">Criar publicação</a>
 <br>
 <br>
 <hr>
@@ -16,8 +16,8 @@
     <tr>
         <th>{{postagem.id_post}}</th>
         <th>{{postagem.titulo}}</th>
-        <th><a href="http://localhost/Projetinho/?pagina=admin&metodo=alter&id={{postagem.id_post}}">Alterar</a></th>
-        <th><a href="http://localhost/Projetinho/?pagina=admin&metodo=delete&id={{postagem.id_post}}">Deletar</a></th>
+        <th><a href="http://localhost/Projetinho/Admin/alter/{{postagem.id_post}}">Alterar</a></th>
+        <th><a href="http://localhost/Projetinho/Admin/delete/{{postagem.id_post}}">Deletar</a></th>
     </tr>
     {% endfor %}
 </table>
