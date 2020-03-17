@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+
+  php:
+    image: crudphp
+    volumes:
+      - ./:/app
+    working_dir: /app
+
+  web:
+    image: crudnginx
+    volumes:
+      - ./:/app
+    depends_on:
+      - php
+    ports:
+      - 80:80
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: crud
+      POSTGRES_USER: crud
+      POSTGRES_DB: crudphp
+    ports:
+      - 5434:5432
+
+  admin:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080 
+    environment: 
+      ADMINER_DESIGN: 'galkaev'   
+
