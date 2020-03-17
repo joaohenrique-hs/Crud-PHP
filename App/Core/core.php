@@ -12,9 +12,9 @@ class Core
             $_REQUEST_URI = substr($_REQUEST_URI, 0, $INITE);
         }
 
-        $_REQUEST_URI_PASTA = substr($_REQUEST_URI, 12);
+        $_REQUEST_URI = substr($_REQUEST_URI, 1);
 
-        $URL = explode('/', $_REQUEST_URI_PASTA);
+        $URL = explode('/', $_REQUEST_URI);
 
         //--------------------------------------------------------------------
 
