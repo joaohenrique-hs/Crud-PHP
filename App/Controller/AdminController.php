@@ -41,23 +41,23 @@ class AdminController
             Postagem::insert($_POST);
 
             echo '<script>alert("Publicação inserida com sucesso!")</script>';
-            echo '<script>location.href="http://localhost/Projetinho/Admin"</script>';
+            echo '<script>location.href="http://localhost/Admin"</script>';
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '")</script>';
-            echo '<script>location.href="http://localhost/Projetinho/Admin/create"</script>';
+            echo '<script>location.href="http://localhost/Admin/create"</script>';
         }
     }
     public function delete($params)
     {
         try {
-            Postagem::delete($params);
             Comentario::deleteComents($params);
+            Postagem::delete($params);
 
             echo '<script>alert("Publicação deletada com sucesso!")</script>';
-            echo '<script>location.href="http://localhost/Projetinho/Admin"</script>';
+            echo '<script>location.href="http://localhost/Admin"</script>';
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '")</script>';
-            echo '<script>location.href="http://localhost/Projetinho/Admin"</script>';
+            echo '<script>location.href="http://localhost/Admin"</script>';
         }
     }
     public function alter($params)
@@ -80,11 +80,11 @@ class AdminController
         try {
             Postagem::update($_POST, $params);
             echo '<script>alert("Publicação alterada com sucesso!")</script>';
-            echo '<script>location.href="http://localhost/Projetinho/Admin"</script>';
+            echo '<script>location.href="http://localhost/Admin"</script>';
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '")</script>';
             $id = $e->getCode();
-            echo '<script>location.href="http://localhost/Projetinho/Admin/alter/' . $id . '"</script>';
+            echo '<script>location.href="http://localhost/Admin/alter/' . $id . '"</script>';
         }
     }
 }

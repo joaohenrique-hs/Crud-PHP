@@ -25,11 +25,11 @@ class PostController
         try {
             Comentario::createComent($_POST, $id);
             echo '<script>alert("Comentário inserido com sucesso!")</script>';
-            echo '<script>location.href="http://localhost/Projetinho/Post/' . $id . '"</script>';
+            echo '<script>location.href="http://localhost/Post/' . $id . '"</script>';
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '")</script>';
             $id = $e->getCode();
-            echo '<script>location.href="http://localhost/Projetinho/Post/' . $id . '"</script>';
+            echo '<script>location.href="http://localhost/Post/' . $id . '"</script>';
         }
     }
 }
