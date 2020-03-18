@@ -25,8 +25,6 @@ $core->start();
 $retorno = ob_get_contents();
 ob_end_clean();
 
-$home = file_get_contents($retorno);
-
 $tplPronto = str_replace('{{conteudo}}', $retorno, $template);
 
 echo $tplPronto;
