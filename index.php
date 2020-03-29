@@ -1,13 +1,13 @@
 <?php
 
-require_once 'App/Core/core.php';
+require_once 'src/Core/core.php';
 
-require_once 'App/Controller/ErrorController.php';
-require_once 'App/Controller/PostController.php';
-require_once 'App/Controller/AdminController.php';
+require_once 'src/Controller/ErrorController.php';
+require_once 'src/Controller/PostController.php';
+require_once 'src/Controller/AdminController.php';
 
-require_once 'App/Models/Post.php';
-require_once 'App/Models/Comment.php';
+require_once 'src/Models/Post.php';
+require_once 'src/Models/Comment.php';
 
 require_once 'lib/Database/Connection.php';
 
