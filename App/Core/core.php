@@ -16,9 +16,7 @@ class Core
 
         $URL = explode('/', $_REQUEST_URI);
 
-        //--------------------------------------------------------------------
-
-        $URL[0] = ($URL[0] != '' ? $URL[0] : 'Home');
+        $URL[0] = ($URL[0] != '' ? $URL[0] : 'Post');
 
         $Controller = $URL[0] . 'Controller';
 
@@ -27,47 +25,16 @@ class Core
             if (isset($URL[1])) {
                 if (method_exists($Controller, $URL[1])) {
                     $Method = $URL[1];
-                    if(isset($URL[2])){
+                    if (isset($URL[2])) {
                         $params = $URL[2];
                     }
-                }
-                else{
+                } else {
                     $params = $URL[1];
                 }
             }
             $Controller::$Method($params);
         } else {
-            ErroController::index();
+            http_response_code(404);
         }
     }
-
-
-
-    /*public function start()
-    {
-        $urlGet = 0;
-        if (isset($urlGet['pagina'])) {
-            $controller = ucfirst($urlGet['pagina'] . 'Controller');
-        } else {
-            $controller = 'HomeController';
-        }
-        if (isset($urlGet['metodo'])) {
-            $acao = $urlGet['metodo'];
-        } else {
-            $acao = 'index';
-        }
-
-        if (!class_exists($controller)) {
-            $controller = 'ErroController';
-        }
-        if (isset($urlGet['id']) && $urlGet['id'] != null) {
-            $id = $urlGet['id'];
-        } else {
-            $id = null;
-        }
-
-
-        call_user_func_array(array(new $controller, $acao), array('id' => $id));
-    }
-    */
 }

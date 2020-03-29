@@ -2,7 +2,6 @@
 
 require_once 'App/Core/core.php';
 
-require_once 'App/Controller/HomeController.php';
 require_once 'App/Controller/ErrorController.php';
 require_once 'App/Controller/PostController.php';
 require_once 'App/Controller/AdminController.php';
