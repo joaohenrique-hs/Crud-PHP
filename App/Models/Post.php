@@ -22,7 +22,7 @@ class Post
             }
             return $resultado;
         } catch (Exception $e) {
-            return false;
+            return "Failed to get posts";
         }
     }
 
@@ -90,7 +90,6 @@ class Post
 
             if ($res == 0) {
                 throw new Exception("Fail to delete Post");
-                return false;
             }
 
             return true;
@@ -104,7 +103,6 @@ class Post
         try {
             if (empty($dadosPost['titulo']) or empty($dadosPost['conteudo'])) {
                 throw new Exception("Invalid attempt", $idPost);
-                return false;
             }
             $con = Connection::getCon();
 

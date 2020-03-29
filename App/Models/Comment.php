@@ -41,11 +41,12 @@ class Comment
             $res = $sql->execute();
 
             if ($res == 0) {
-                throw new Exception("Fail to insert comment, $idPost");
+                return "Failed to insert comment, $idPost";
             }
+
             return "Comment was created succesfuly";
         } catch (Exception $e) {
-            return $e;
+            return "Failed to insert comment";
         }
     }
 
@@ -59,7 +60,7 @@ class Comment
             $res = $sql->execute();
 
             if ($res == 0) {
-                throw new Exception("Fail to insert comments");
+                throw new Exception("Failed to insert comments");
             }
 
             return true;
