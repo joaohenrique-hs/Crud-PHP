@@ -2,89 +2,54 @@
 
 class AdminController
 {
-    public function index()
-    {
-        try {
-            $loader = new \Twig\Loader\FilesystemLoader('App/View');
-            $twig = new \Twig\Environment($loader);
-            $template = $twig->load('admin.html');
-
-            $parametros = array();
-            $objPostagens = Postagem::selecionaTodos();
-            $parametros['postagens'] = $objPostagens;
-
-            $conteudo = $template->render($parametros);
-            echo $conteudo;
-        } catch (Exception $e) {
-            $parametros['postagens'] = $objPostagens;
-
-            $conteudo = $template->render($parametros);
-            echo $conteudo;
-            echo '<h2>' . $e->getMessage();
-            '</h2>';
-        }
-    }
     public function create()
     {
-        $loader = new \Twig\Loader\FilesystemLoader('App/View');
-        $twig = new \Twig\Environment($loader);
-        $template = $twig->load('create.html');
-
-        $parametros = array();
-
-        $conteudo = $template->render($parametros);
-        echo $conteudo;
-    }
-    public function insert()
-    {
         try {
-            Postagem::insert($_POST);
-
-            echo '<script>alert("Publicação inserida com sucesso!")</script>';
-            echo '<script>location.href="http://localhost/Admin"</script>';
+            Post::create($_POST);
+            http_response_code(200);
+            echo json_encode(
+                array("message" => "Post was created successfuly")
+            );
         } catch (Exception $e) {
-            echo '<script>alert("' . $e->getMessage() . '")</script>';
-            echo '<script>location.href="http://localhost/Admin/create"</script>';
+            var_dump($_POST);
+            echo $e;
+            http_response_code(503);
+            echo json_encode(
+                array("error" => "Server cannot handle with this request")
+            );
         }
     }
     public function delete($params)
     {
         try {
-            Comentario::deleteComents($params);
-            Postagem::delete($params);
+            Comment::deleteComments($params);
+            Post::delete($params);
 
-            echo '<script>alert("Publicação deletada com sucesso!")</script>';
-            echo '<script>location.href="http://localhost/Admin"</script>';
+            http_response_code(200);
+            echo json_encode(
+                array("message" => "Post was deleted successfuly")
+            );
         } catch (Exception $e) {
-            echo '<script>alert("' . $e->getMessage() . '")</script>';
-            echo '<script>location.href="http://localhost/Admin"</script>';
+            http_response_code(503);
+            echo json_encode(
+                array("error" => "Server cannot handle with this request")
+            );
         }
-    }
-    public function alter($params)
-    {
-        $postagem = Postagem::selectPostByID($params);
-        $loader = new \Twig\Loader\FilesystemLoader('App/View');
-        $twig = new \Twig\Environment($loader);
-        $template = $twig->load('update.html');
-
-        $parametros = array();
-        $parametros['titulo'] = $postagem->titulo;
-        $parametros['conteudo'] = $postagem->conteudo;
-        $parametros['id_post'] = $postagem->id_post;
-
-        $conteudo = $template->render($parametros);
-        echo $conteudo;
     }
     public function update($params)
     {
         try {
-            Postagem::update($_POST, $params);
-            echo '<script>alert("Publicação alterada com sucesso!")</script>';
-            echo '<script>location.href="http://localhost/Admin"</script>';
+            Post::update($_POST, $params);
+
+            http_response_code(200);
+            echo json_encode(
+                array("message" => "Post was updated successfuly")
+            );
         } catch (Exception $e) {
-            echo '<script>alert("' . $e->getMessage() . '")</script>';
-            $id = $e->getCode();
-            echo '<script>location.href="http://localhost/Admin/alter/' . $id . '"</script>';
+            http_response_code(503);
+            echo json_encode(
+                array("error" => "Server cannot handle with this request")
+            );
         }
     }
 }

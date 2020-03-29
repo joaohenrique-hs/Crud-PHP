@@ -5,31 +5,33 @@ class PostController
     public function index($params)
     {
         try {
-            $postagem = Postagem::selectPostByID($params);
-            $loader = new \Twig\Loader\FilesystemLoader('App/View');
-            $twig = new \Twig\Environment($loader);
-            $template = $twig->load('single.html');
-            $parametros = array();
-            $parametros['titulo'] = $postagem->titulo;
-            $parametros['conteudo'] = $postagem->conteudo;
-            $parametros['id_post'] = $postagem->id_post;
-            $parametros['comentarios'] = $postagem->comentarios;
-            $conteudo = $template->render($parametros);
-            echo $conteudo;
-        } catch (Exception $e) {
-            echo $e->getMessage();
+            $postagem = Post::selectPostByID($params);
+            http_response_code(200);
+
+            echo json_encode($postagem);
+        } 
+        catch (Exception $e) {
+            http_response_code(503);
+            
+            echo json_encode(
+                array("error" => "Server cannot handle this request")
+            );
         }
     }
-    public function coment($id)
+    public function comment($id)
     {
         try {
-            Comentario::createComent($_POST, $id);
-            echo '<script>alert("Comentário inserido com sucesso!")</script>';
-            echo '<script>location.href="http://localhost/Post/' . $id . '"</script>';
+            $content = Comment::createComment($_POST, $id);
+            http_response_code(200);
+            echo json_encode(
+                array("message" => $content)
+            );
         } catch (Exception $e) {
-            echo '<script>alert("' . $e->getMessage() . '")</script>';
-            $id = $e->getCode();
-            echo '<script>location.href="http://localhost/Post/' . $id . '"</script>';
+            var_dump($_POST);
+            http_response_code(503);
+            echo json_encode(
+                array("error" => "Server cannot handle with this request")
+            );
         }
     }
 }

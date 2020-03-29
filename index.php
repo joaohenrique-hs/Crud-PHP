@@ -3,13 +3,12 @@
 require_once 'App/Core/core.php';
 
 require_once 'App/Controller/HomeController.php';
-require_once 'App/Controller/ErroController.php';
+require_once 'App/Controller/ErrorController.php';
 require_once 'App/Controller/PostController.php';
-require_once 'App/Controller/SobreController.php';
 require_once 'App/Controller/AdminController.php';
 
-require_once 'App/Models/Postagem.php';
-require_once 'App/Models/Comentario.php';
+require_once 'App/Models/Post.php';
+require_once 'App/Models/Comment.php';
 
 require_once 'lib/Database/Connection.php';
 
@@ -25,6 +24,8 @@ $core->start();
 $retorno = ob_get_contents();
 ob_end_clean();
 
-$tplPronto = str_replace('{{conteudo}}', $retorno, $template);
+// $tplPronto = str_replace('{{conteudo}}', $retorno, $template);
 
-echo $tplPronto;
+// echo $tplPronto;
+
+echo $retorno;

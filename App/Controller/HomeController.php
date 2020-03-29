@@ -5,18 +5,14 @@ class HomeController
     public function index()
     {
         try {
-            $colecPostagens = Postagem::selecionaTodos(); 
-            $loader = new \Twig\Loader\FilesystemLoader('App/View');
-            $twig = new \Twig\Environment($loader);
-            $template = $twig->load('home.html');
-
-            $parametros = array();
-            $parametros['postagens'] = $colecPostagens;
-
-            $conteudo = $template->render($parametros);
-            echo $conteudo;
+            $postagens = Post::selectAll(); 
+            http_response_code(200);
+            echo json_encode($postagens);
         } catch (Exception $e) {
-            echo $e->getMessage();
+            http_response_code(503);
+            echo json_encode(
+                array("error" => "Server cannot handle with this request")
+            );
         }
     }
 }
